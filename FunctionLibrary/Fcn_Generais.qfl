@@ -1,0 +1,874 @@
+﻿'Funciones ARIBA
+Function LogonAriba(usuario,senha,isSenhaCriptograda)
+	SystemUtil.Run "chrome", "https://s1.ariba.com/Sourcing/Main?realm=aegea-t&passwordadapter=ThirdPartyUser"
+
+	Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebEdit("Input_NomeDeUsuario").Set usuario
+	If isSenhaCriptograda Then
+		Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebEdit("Input_Senha").SetSecure senha
+	Else
+		Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebEdit("Input_Senha").Set senha
+	End If
+	
+	Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebButton("Button_Acessar").Click
+	
+	Set element = Browser("Aegea - Ariba Spend Management_2").Page("Aegea - Ariba Spend Management - Home").WebEdit("Input_Pesquisar_AbaSourcing")
+	assertElementExist element,"Logon Ariba","Logon bem sucedido","Falha no Logon"
+	
+End Function
+
+' Base Functions
+
+Function assertElementExist(element,assertionTitle,successMessage,failureMessage)
+		If  element.Exist(30) Then
+			Reporter.ReportEvent micPass, assertionTitle, successMessage
+	        else
+			Reporter.ReportEvent micFail, assertionTitle, failureMessage
+			ExitTestIteration
+	       End If
+End Function
+
+Function assertCondition(condition,assertionTitle,successMessage,failureMessage)
+		If  condition Then
+			Reporter.ReportEvent micPass, assertionTitle, successMessage
+	        else
+			Reporter.ReportEvent micFail, assertionTitle, failureMessage
+			ExitTestIteration
+	       End If
+End Function
+
+Function assertFalse(assertionTitle, failureMessage)
+		Reporter.ReportEvent micFail, assertionTitle, failureMessage
+		ExitTestIteration
+End Function
+
+Function assertFalse(assertionTitle, failureMessage)
+		Reporter.ReportEvent micFail, assertionTitle, failureMessage
+		ExitTestIteration
+End Function
+
+Function validateMessageByRegExp(ByVal message, ByVal pattern)   
+    Dim re, matches, match
+    Set re = New RegExp
+    re.Pattern = pattern 											
+    re.Global = True
+    Set matches = re.Execute(message)
+    
+    If matches.Count > 0 Then
+        validateMessageByRegExp = True
+    Else
+        validateMessageByRegExp = False
+    End If
+End Function
+
+Function extractNumbers(ByVal text)
+    Dim numbers, character, i
+    numbers = ""
+    
+    For i = 1 To Len(text)
+        character = Mid(text, i, 1)
+        If IsNumeric(character) Then
+            If Len(numbers & character) > Len(numbers) Then
+                numbers = numbers & character
+            End If
+        End If
+    Next
+    If Len(numbers > 2) Then
+	If Mid(numbers, 1,2) = "00" Then
+		tamanhoString = Len(numbers) - 2
+		numbers = Mid(numbers, 3, tamanhoString)
+	End If    	
+    End If
+    
+    extractNumbers = numbers
+End Function
+
+
+
+Function closeAllTabs()
+	'OJO solo funciona si tenes browsers abiertos, sino arroja error
+	Browser("CreationTime:=0").CloseAllTabs
+End Function
+
+' Exemplo de uso
+'SendKey "{ENTER}" ' Envia a tecla Enter
+'SendKey "{TAB}" ' Envia a tecla Tab
+
+Function SendKey(key)
+    Set objShell = CreateObject("WScript.Shell")
+    objShell.SendKeys key
+End Function
+
+' Exemplo de uso da função
+' Dim colunas
+' colunas = Array("Nome", "Idade", "Cidade")
+' CriarArquivoCSV "Caminho\\Para\\O\\Arquivo.csv", colunas
+
+Sub CriarArquivoCSV(nomeArquivo, colunas)
+    Dim fso, arquivo, linha, coluna
+    
+    ' Criação do objeto FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Cria o arquivo CSV
+    Set arquivo = fso.CreateTextFile(nomeArquivo, True)
+    
+    ' Escreve os nomes das colunas no arquivo
+    For Each coluna In colunas
+        linha = linha & coluna & ","
+    Next
+    
+    ' Remove a última vírgula
+    linha = Left(linha, Len(linha) - 1)
+    arquivo.WriteLine(linha)
+    
+    ' Fecha o arquivo
+    arquivo.Close
+End Sub
+
+' Exemplo de uso da função
+' Dim dados
+' Set dados = CreateObject("Scripting.Dictionary")
+' dados.Add "Nome", "João"
+' dados.Add "Idade", "30"
+' dados.Add "Cidade", "São Paulo"
+' PreencherLinhaCSV "Caminho\\Para\\O\\Arquivo.csv", dados
+Sub PreencherLinhaCSV(nomeArquivo, dados)
+    Const ForReading = 1, ForWriting = 2, ForAppending = 8
+    Const TristateUseDefault = -2, TristateTrue = -1, TristateFalse = 0
+    Dim fso, arquivo, linha, coluna, valor, colunas, linhaAtual, colunaAtual, encontrouLinhaVazia
+    
+    ' Criação do objeto FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Verifica se o arquivo existe antes de abrir
+    If Not fso.FileExists(nomeArquivo) Then
+        ' Se o arquivo não existe, cria um novo e escreve os nomes das colunas
+        Set arquivo = fso.CreateTextFile(nomeArquivo)
+        arquivo.WriteLine Join(dados.Keys, ",")
+    Else
+        ' Abre o arquivo CSV para leitura
+        Set arquivo = fso.OpenTextFile(nomeArquivo, ForReading)
+        
+        ' Lê a primeira linha para obter os nomes das colunas
+        colunas = Split(arquivo.ReadLine, ",")
+        For Each coluna in colunas
+        	print coluna
+        Next
+        
+        ' Procura a próxima linha vazia
+        encontrouLinhaVazia = False
+        Do While Not arquivo.AtEndOfStream
+            linhaAtual = arquivo.ReadLine
+            linhaAtual = Replace(linhaAtual, """", "") ' Remove as aspas
+            colunasNaLinha = Split(linhaAtual, ",")
+            For Each colunaAtual In colunas
+                If Trim(colunasNaLinha(ArrayIndexOf(colunas, colunaAtual))) = "" Then
+                    ' Encontrou uma linha vazia na coluna correspondente
+                    encontrouLinhaVazia = True
+                    Exit Do
+                End If
+            Next
+        Loop
+        
+       ' Fecha o arquivo antes de reabrir no modo de escrita
+        arquivo.Close
+        Set arquivo = fso.OpenTextFile(nomeArquivo, ForAppending, True) ' Modo de escrita (append)
+        
+        ' Se não encontrou uma linha vazia, adiciona uma nova linha
+'        If Not encontrouLinhaVazia Then
+'            arquivo.WriteLine ""
+'        End If
+        
+
+    End If
+    
+    ' Monta a linha com os dados
+    linha = ""
+    For Each coluna In colunas
+        valor = dados(coluna)
+        linha = linha & valor & ","
+    Next
+    
+    ' Remove a última vírgula
+    linha = Left(linha, Len(linha) - 1)
+    arquivo.WriteLine linha
+    
+    ' Fecha o arquivo
+    arquivo.Close
+End Sub
+
+' Função auxiliar para encontrar o índice de um valor em um array
+Function ArrayIndexOf(arr, val)
+    Dim i
+    For i = LBound(arr) To UBound(arr)
+        If arr(i) = val Then
+            ArrayIndexOf = i
+            Exit Function
+        End If
+    Next
+    ArrayIndexOf = -1
+End Function
+
+'FUNCIONES FIORI
+Function LogonFiori(usuario,senha,isSenhaCriptograda)
+	SystemUtil.Run "chrome", "http://sapvdfiodtc01.latam.corp.net:8012/sap/bc/ui5_ui5/ui2/ushell/shells/abap/Fiorilaunchpad.html"
+
+	Browser("Logon").Page("Logon").Sync
+	assertElementExist Browser("Logon").Page("Logon").WebEdit("Input_Usuario"),"Acessar Página de Logon","Acesso bem sucedido","Página de Logon indisponível"
+	
+	Browser("Logon").Page("Logon").WebEdit("Input_Usuario").Set usuario
+	If isSenhaCriptograda Then
+		Browser("Logon").Page("Logon").WebEdit("Input_Senha").SetSecure senha
+	Else
+		Browser("Logon").Page("Logon").WebEdit("Input_Senha").Set senha
+	End If
+	
+	Browser("Logon").Page("Logon").WebEdit("Input_Mandante").Set "400"
+	Browser("Logon").Page("Logon").WebButton("Button_Logon").Click
+	
+	assertElementExist Browser("Logon").Page("Logon").WebButton("Button_UsuarioLogado"),"Logon FIORI","Logon bem sucedido","Falha no Logon"
+	
+End Function
+
+Function LoginFiori(usuario,senha,isSenhaCriptograda)
+	Browser("Logon").Sync
+	assertElementExist Browser("Logon").Page("Logon").WebEdit("Input_Usuario"),"Acessar Página de Logon","Acesso bem sucedido","Página de Logon indisponível"
+	
+	Browser("Logon").Page("Logon").WebEdit("Input_Usuario").Set usuario
+	If isSenhaCriptograda Then
+		Browser("Logon").Page("Logon").WebEdit("Input_Senha").SetSecure senha
+	Else
+		Browser("Logon").Page("Logon").WebEdit("Input_Senha").Set senha
+	End If
+	
+	Browser("Logon").Page("Logon").WebEdit("Input_Mandante").Set "400"
+	Browser("Logon").Page("Logon").WebButton("Button_Logon").Click
+	
+	assertElementExist Browser("Logon").Page("Logon").WebButton("Button_UsuarioLogado"),"Logon FIORI","Logon bem sucedido","Falha no Logon"
+	
+End Function
+
+Function AcessarAplicativoFiori(aplicativo)
+		opcao = UCase(aplicativo)
+		Select Case opcao
+			Case "CRIAR ORDEM INTERNA"
+				Set element = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: 1ª tela").WebElement("Title_DefinirACC")
+				assertionTitle = "Acesso ao Aplicativo - Criar Ordem Interna"
+			Case "MODIFICAR ORDEM INTERNA"
+				Set element = Browser("Modificar ordem interna: 1ª tela").Page("Modificar ordem interna: 1ª tela").WebElement("Title_ModificarOrdemInterna")
+				assertionTitle = "Acesso ao Aplicativo - Modificar Ordem Interna"
+			Case "EXECUTAR LIQUIDAÇÃO DE OI"
+				Set element = Browser("Apropriação real: Ordem").Page("Apropriação real: Ordem").WebElement("Title_ExecutarLiquidacaoDeOI")
+				assertionTitle = "Acesso ao Aplicativo - Executar Liquidação de OI"
+			Case "CRIAR REQUISIÇÃO DE COMPRA - AMPLIADO"
+				Set element = Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPList("Dropdown_TipoDeDocumento")
+				assertionTitle = "Acesso ao Aplicativo - Criar requisição de compra - Ampliado"
+			Case "AGREGADOR"
+				Set element = Browser("Página inicial").Page("Página inicial").WebEdit("Input_RequisicaoAgregador")
+				assertionTitle = "Acesso ao Aplicativo - Agregador"
+			Case Else
+		         assertFalse "Aplicativo não encontrado", "Informe um aplicativo válido"
+		End Select
+
+		Browser("Página inicial").Page("Página inicial").Sync
+		Set buttonProcurar = Browser("Página inicial").Page("Página inicial").SAPUIButton("Button_Procurar")
+		If Browser("Página inicial").Page("Página inicial").SAPUIButton("Button_Procurar").Exist Then
+			buttonProcurar.Click
+		End If
+
+		Browser("Página inicial").Page("Página inicial").SAPUITextEdit("Input_Procurar").Set aplicativo
+		Browser("Página inicial").Page("Página inicial").WebElement("Button_ProcurarApp").Click
+		
+		Select Case opcao
+			Case "CRIAR ORDEM INTERNA"
+				Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").Sync
+			Case "MODIFICAR ORDEM INTERNA"
+				Browser("Modificar ordem interna: 1ª tela").Page("Modificar ordem interna: 1ª tela").Sync
+			Case "EXECUTAR LIQUIDAÇÃO DE OI"
+				Browser("Apropriação real: Ordem").Page("Apropriação real: Ordem").Sync
+			Case "CRIAR REQUISIÇÃO DE COMPRA - AMPLIADO"
+				Browser("Página inicial").Page("Página inicial").Sync
+				Browser("Página inicial").Page("Página inicial").WebElement("Card_CriarRequisicaoDeCompraAmpliado_focus").WaitProperty "visible",true,10
+				Browser("Página inicial").Page("Página inicial").WebElement("Card_CriarRequisicaoDeCompraAmpliado").Click
+			Case "AGREGADOR"
+				Browser("Página inicial").Page("Página inicial").Sync
+		End Select
+		
+		assertElementExist element, assertionTitle, "Acesso bem sucedido", "Aplicativo não encontrado"
+
+End Function
+
+Function CriarOrdemInternaFiori(tipoDeOrdem, proximaIteracao)
+
+		tipoDeOrdem = UCase(tipoDeOrdem)
+
+	       Select Case tipoDeOrdem
+		    Case "ZOPX", "ZCPX"
+		    	  normaDeApropriacao = False
+		    Case "ZEST" 
+		    	  normaDeApropriacao = False
+		    Case Else
+		    	  closeAllTabs
+		         assertFalse "Tipo de ordem '" & tipoDeOrdem & "' não mapeado", "Informe um tipo de ordem válido"
+		         ExitTestIteration
+		End Select
+		
+		If Not proximaIteracao Then
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: 1ª tela").SAPEdit("Input_AreaContabCustos").Set "1000"
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: 1ª tela").SAPButton("Button_DefinirACC_Avancar").Click	
+		End If
+		
+		Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: 1ª tela").SAPEdit("Input_TipoDeOrdem").Set tipoDeOrdem
+		Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: 1ª tela").SAPButton("Button_DadosMestre").Click
+		
+		Set element = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").WebElement("Title_DadosMestre")
+		assertElementExist element,"Acesso à página - Criar ordem interna: Dados mestre","Acesso bem sucedido","Página não encontrada"
+		
+		Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPEdit("Input_Empresa").Set "5000"
+		Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPEdit("Input_CentroDeLucro").Set "RHOTSPINDC"
+		Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPEdit("Input_CenCstResponsavel").Set "IND1061005"
+		
+		
+		If tipoDeOrdem =  "ZCPX" Then
+			 Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").WebElement("Tab_Investimentos").Click
+		         Set element = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPEdit("Input_PerfildeInvestim")
+			  assertElementExist element,"Acesso à aba - Investimento","Acesso bem sucedido","Aba não encontrada"
+			  element.Set "Z00003"
+			  Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").WebElement("Tab_Controle").Click
+			  
+			  Set element = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").WebElement("Title_AbaControle")
+			  assertElementExist element,"Acesso à aba - Controle","Acesso bem sucedido","Aba não encontrada"
+			 
+			  Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPButton("Button_AbaControle_Liberar").Click
+			  
+		  	  Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").WebElement("StatusBarMessage_Ordem").WaitProperty "visible",true,5
+			  statusMessage = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").WebElement("StatusBarMessage_Ordem").GetROProperty("innertext")
+
+			  assertCondition statusMessage = "Ordem liberada", "Validar liberação de ordem","Ordem liberada com sucesso","Erro na liberação de ordem"
+		End If
+	 
+	 	If normaDeApropriacao Then
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPButton("Button_NormaDeApropriacao").Click
+			Set element = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Atualizar norma de apropriação").SAPEdit("Input_Tp")
+                     assertElementExist element,"Acesso à página - Atualizar norma de apropriação","Acesso bem sucedido","Página não encontrada"
+
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Atualizar norma de apropriação").SAPTable("Regras de repartição").SetCellData 2,1,"CCS"
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Atualizar norma de apropriação").SAPTable("Regras de repartição").SetCellData 2,2,"IND1061005"
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Atualizar norma de apropriação").SAPTable("Regras de repartição").SetCellData 2,4,"100"
+
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Atualizar norma de apropriação").SAPButton("Button_Gravar").Click
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").Sync
+		Else
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: Dados mes").SAPButton("Button_Gravar").Click
+			Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").Sync
+		End If	
+	 	
+	       Set messageObj = Browser("Criar ordem interna: 1ª tela").Page("Criar ordem interna: 1ª tela").SAPFrame("Criar ordem interna: 1ª tela").WebElement("StatusBarMessage_Ordem")
+		message = messageObj.GetROProperty("innertext")
+			
+		condition = validateMessageByRegExp(message, "A ordem foi criada sob nº \d+")
+		Dim numeroOrdem
+		If condition Then
+			messageObj.Click
+			numeroOrdem = extractNumbers(message)
+		End If
+		
+		assertCondition condition, "Validar criação de ordem interna com tipo: " & tipoDeOrdem,"Ordem nº:" & numeroOrdem & " criada com sucesso","Erro na criação de ordem"
+
+		CriarOrdemInternaFiori = numeroOrdem
+		
+
+End Function
+
+Function ModificarOrdemFiori(acaoOrdem, numeroOrdem)
+      
+	Select Case UCase(acaoOrdem) 
+		Case "BLOQUEIO"
+			selectMenu = "Processar;Bloqueio;Definir"
+			mensagemEsperada = "A ordem foi bloqueada"
+			assertionTitle = "Validar bloqueio de ordem"
+			successMessage = "Ordem bloqueada com sucesso"
+		Case "DESBLOQUEIO"
+			selectMenu = "Processar;Bloqueio;Anular"
+			mensagemEsperada = "O bloqueio foi anulado"
+			assertionTitle = "Validar desbloqueio de ordem"
+			successMessage = "Ordem desbloqueada com sucesso"
+		Case Else
+			assertFalse "Ação de modificação da ordem não mapeada", "Informe uma ação válida: 'Bloqueio' ou 'Desbloqueio'"
+	End Select
+
+	Browser("Modificar ordem interna: 1ª tela").Page("Modificar ordem interna: 1ª tela").SAPFrame("Modificar ordem interna: 1ª tela").SAPEdit("Input_Ordem").Set numeroOrdem
+	Browser("Modificar ordem interna: 1ª tela").Page("Modificar ordem interna: 1ª tela").SAPFrame("Modificar ordem interna: 1ª tela").SAPButton("Button_DadosMestre").Click
+	
+	Browser("Modificar ordem interna: 1ª tela").Page("Modificar ordem interna: 1ª tela").Sync
+	Set element = Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").WebElement("Title_ModificarOrdemInternaDadosMestre")
+	assertElementExist element, "Acesso à página - Modificar ordem interna: Dados mestre", "Acesso bem sucedido", "Página não encontrada"
+	
+	Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").WebElement("Tab_Controle").Click
+	
+	Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").Sync
+	Set element = Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").WebElement("Title_Tab_Controle")
+	assertElementExist element, "Acesso à Aba Controle", "Acesso bem sucedido", "Aba não encontrada"
+	
+	
+	Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").SAPButton("Button_Mais").Click
+	Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").SAPDropDownMenu("Definir").Select selectMenu
+	
+	Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").WebElement("StatusBarMessage_Ordem").WaitProperty "visible",true,5
+	
+	statusMessage = Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").WebElement("StatusBarMessage_Ordem").GetROProperty("innertext") 
+	print statusMessage
+	failureMessage = "Status da Ordem - Esperado: " & mensagemEsperada & " | Recebido: " &  statusMessage
+	assertCondition statusMessage = mensagemEsperada, assertionTitle, successMessage, failureMessage
+	
+	Browser("Modificar ordem interna: Dados").Page("Modificar ordem interna: Dados").SAPFrame("Modificar ordem interna: Dados").SAPButton("Button_Gravar").Click
+	
+	Browser("Modificar ordem interna: 1ª te").Page("Modificar ordem interna: 1ª te").SAPFrame("Modificar ordem interna: 1ª te").WebElement("StatusBarMessage_OrdemModificada").WaitProperty "visible",true,5
+	
+	statusMessage =Browser("Modificar ordem interna: 1ª te").Page("Modificar ordem interna: 1ª te").SAPFrame("Modificar ordem interna: 1ª te").WebElement("StatusBarMessage_OrdemModificada").GetROProperty("innertext") 
+	print statusMessage
+	condition = validateMessageByRegExp(statusMessage, "A ordem \d+ foi modificada")
+	assertCondition condition, "Validar modificação de ordem interna","Ordem modificada com sucesso","Erro na modificação da ordem"
+	
+	ModificarOrdemFiori = extractNumbers(statusMessage)
+	
+End Function
+
+Function CriarReqDeCompraAmpliadoFiori1(tipoDeRequisicao,c,i,material,textoBreve,qtdSolicitada,precoAvaliacao,t,dtRemessa,grpMercads,centro,deposito,orgC,gcM)	
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPList("Dropdown_TipoDeDocumento").WaitProperty "visible",true,7
+	wait 1
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPList("Dropdown_TipoDeDocumento").Select "Req Material"
+	wait 1
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").Sync
+
+	'Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonExpandirTabela").WaitProperty "visible",true,5
+	'Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonExpandirTabela").Click
+	
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonTelaCheiaTabela").WaitProperty "visible",true,5
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonTelaCheiaTabela").Click	
+
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputMaterial_focus").WaitProperty "visible",true,5
+	
+	If c <> "" Then
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputC_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputC").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputC").Set c
+	End If
+	
+	If i <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputI_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputI").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputI").Set i	
+	End If
+	
+	If material <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputMaterial_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputMaterial").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputMaterial").Set material
+	End If
+	
+	If textoBreve <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputTextoBreve_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputTextoBreve").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputTextoBreve").Set textoBreve
+	End If
+	
+	If qtdSolicitada <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputQtdSolicitada_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputQtdSolicitada").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputQtdSolicitada").Set qtdSolicitada
+	End If
+	
+	If precoAvaliacao <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputPrecoAvaliacao_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputPrecoAvaliacao").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputPrecoAvaliacao").Set precoAvaliacao
+	End If
+	
+	If t <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputT_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputT").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputT").Set t
+	End If
+	
+	If dtRemessa <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputDtRemessa_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDtRemessa").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDtRemessa").Set dtRemessa
+	End If
+	
+       If grpMercads <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputGrpMercads_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGrpMercads").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGrpMercads").Set grpMercads
+	End If
+	
+	If centro <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputCentro_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputCentro").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputCentro").Set centro
+	End If
+	
+	If deposito <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputDeposito_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDeposito").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDeposito").Set deposito
+	End If
+	
+	If orgC <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputOrgC_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputOrgC").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputOrgC").Set orgC
+	End If
+	
+	If gcM <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputGCm_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGCm").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGCm").Set gcM
+	End If
+	SendKey("{ENTER}")
+	
+End Function
+
+Function Finalizarreqmaterial(PEP)
+Browser("Modificar ordem interna: 1ª te").Page("Modificar ordem interna: 1ª te").SAPFrame("Criar requisição de compra").WebElement("CICtitle").Click
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputElementoPEP").WaitProperty "visible",true,5
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputElementoPEP").Set PEP
+
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("tabTextos").WaitProperty "visible",true,5
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("tabTextos").Click
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("buttonJustificativa").WaitProperty "visible",true,5
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("buttonJustificativa").Click
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").WaitProperty "visible",true,5
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Click
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Set "Teste - Justificativa"
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Click
+
+Browser("Modificar ordem interna: 1ª te").Page("Modificar ordem interna: 1ª te").SAPFrame("Criar requisição de compra").SAPButton("Gravar").Click
+
+Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("StatusBarMessage_ReqDeCompra").WaitProperty "visible",true,4
+Set messageObj = Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("StatusBarMessage_ReqDeCompra")
+message = messageObj.GetROProperty("innertext")
+
+numeroRequisicao = extractNumbers(message) 'sin ceros iniciales
+'numeroRequisicao = obtieneDigitos(message) 'con ceros iniciales
+
+Finalizarreqmaterial = numeroRequisicao
+End Function
+
+Sub capturarPantallaObjetoDone(Objeto,Titulo, Mensaje)
+	Objeto.CaptureBitmap "image.png", True
+	Reporter.ReportEvent micDone,Titulo , Mensaje, "image.png"
+End Sub
+
+
+
+Function CriarRequisicaoDeCompraAmpliadoFiori(tipoDeRequisicao,c,i,material,textoBreve,qtdSolicitada,precoAvaliacao,t,dtRemessa,grpMercads,centro,deposito,orgC,gcM)	
+	
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPList("Dropdown_TipoDeDocumento").WaitProperty "visible",true,7
+	wait 1
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPList("Dropdown_TipoDeDocumento").Select tipoDeRequisicao
+	wait 1
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").Sync
+
+	'Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonExpandirTabela").WaitProperty "visible",true,5
+	'Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonExpandirTabela").Click
+	
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonTelaCheiaTabela").WaitProperty "visible",true,5
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonTelaCheiaTabela").Click	
+
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputMaterial_focus").WaitProperty "visible",true,5
+	
+	If c <> "" Then
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputC_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputC").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputC").Set c
+	End If
+	
+	If i <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputI_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputI").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputI").Set i	
+	End If
+	
+	If material <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputMaterial_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputMaterial").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputMaterial").Set material
+	End If
+	
+	If textoBreve <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputTextoBreve_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputTextoBreve").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputTextoBreve").Set textoBreve
+	End If
+	
+	If qtdSolicitada <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputQtdSolicitada_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputQtdSolicitada").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputQtdSolicitada").Set qtdSolicitada
+	End If
+	
+	If precoAvaliacao <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputPrecoAvaliacao_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputPrecoAvaliacao").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputPrecoAvaliacao").Set precoAvaliacao
+	End If
+	
+	If t <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputT_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputT").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputT").Set t
+	End If
+	
+	If dtRemessa <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputDtRemessa_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDtRemessa").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDtRemessa").Set dtRemessa
+	End If
+	
+       If grpMercads <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputGrpMercads_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGrpMercads").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGrpMercads").Set grpMercads
+	End If
+	
+	If centro <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputCentro_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputCentro").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputCentro").Set centro
+	End If
+	
+	If deposito <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputDeposito_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDeposito").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputDeposito").Set deposito
+	End If
+	
+	If orgC <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputOrgC_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputOrgC").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputOrgC").Set orgC
+	End If
+	
+	If gcM <> "" Then
+	       Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputGCm_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGCm").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("inputGCm").Set gcM
+	End If
+	
+	If UCase(tipoDeRequisicao) = "REQ. SERVIÇO" Then
+		SendKey("{ENTER}")
+	         
+		Set element =  Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("buttonTelaInteiraServico")
+		element.WaitProperty "visible",true,5
+		element.click
+		wait 4
+'		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPButton("buttonAbrirFecharLimites").Click
+		
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").WebElement("inputNumServico_focus").WaitProperty "visible",true,10
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").WebElement("inputNumServico_focus").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputNumServico").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputNumServico").Set "6600703"
+		
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").WebElement("inputQuantidade_focus").Click
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputQuantidade").WaitProperty "visible",true,5
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputQuantidade").Set "1"
+              
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").WebElement("inputPrecoBruto_focus").Click
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputPrecoBruto").WaitProperty "visible",true,5
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputPrecoBruto").Set "2800,00"
+              
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").WebElement("inputElementoPEP_focus").Click
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputElementoPEP").WaitProperty "visible",true,5
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPEdit("inputElementoPEP").Set "U/CPG.23009.A.TA.M.001"
+
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").WebElement("inputNumServico_focus").Click
+              
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").WebElement("buttonVoltarHeader").Click
+
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("tabTextos").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("tabTextos").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("buttonJustificativa").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("buttonJustificativa").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").WaitProperty "visible",true,5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Set "Teste - Justificativa"
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Click
+		wait 1
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Click
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPEdit("textareaJustificativa").Set "Teste - Justificativa"
+		wait 2
+		SendKey("{ENTER}")
+		wait 5
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("buttonTextoDoItem").Click
+		
+              Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("tabServicos").Click
+
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPButton("buttonGravar").Click
+		wait 2
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Relação de serviços: Rel.serv.").SAPButton("buttonGravar").Click
+		
+	Else
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("Button_Gravar").Click
+		wait 2
+		Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").SAPButton("Button_Gravar").Click
+	End If
+	
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").Sync
+		
+	Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("StatusBarMessage_ReqDeCompra").WaitProperty "visible",true,4
+	Set messageObj = Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("StatusBarMessage_ReqDeCompra")
+	If Not  messageObj.Exist(3)Then
+		assertFalse "Validar criação de requisição de compra","Erro na criação de ordem"
+	End If
+	message = messageObj.GetROProperty("innertext")
+	
+	numeroRequisicao = extractNumbers(message)
+				
+	condition = validateMessageByRegExp(message, "Requisição de compra criada sob nº \d+")
+	assertCondition condition, "Validar criação de requisição de compra","Requisição de compra nº: " & numeroRequisicao & " criada com sucesso","Erro na criação de ordem"
+
+	CriarRequisicaoDeCompraAmpliadoFiori = numeroRequisicao
+End Function
+
+Function AgregarRequisicaoDeCompraFiori(requisicaoDeCompraLiberada, fechasap)
+	Browser("agregador").Page("Página inicial").Sync
+	
+	Browser("agregador").Page("Página inicial").WebEdit("Input_RequisicaoAgregador").Set requisicaoDeCompraLiberada
+	SendKey("{ENTER}")
+	wait 2
+	Browser("agregador").Page("Página inicial").WebEdit("Input_RequisicaoAgregador").Click
+	SendKey("{ENTER}")
+	wait 2
+
+	count = 120
+	For Iterator = 1 To count
+		If Browser("agregador").Page("Página inicial").WebElement("TableTitle_Requisicoes_(0)").Exist(7) Then
+			numeroRequisicoes = CLng(extractNumbers(Browser("agregador").Page("Página inicial").WebElement("TableTitle_Requisicoes_(0)").GetROProperty("innertext")))
+			print "Número de requisições: " & numeroRequisicoes & " - Iteração: " & Iterator
+			If numeroRequisicoes > 0 Then
+				Exit For
+			Else
+				wait 3
+			End If
+			
+		End If
+	Next
+
+	numeroRequisicoes = extractNumbers(Browser("agregador").Page("Página inicial").WebElement("TableTitle_Requisicoes_(0)").GetROProperty("innertext"))
+	
+	Set requisicaoResultadoBusca = Browser("agregador").Page("Página inicial").WebElement("rowPrimeiraLinhaTabelaResultados")
+	requisicaoResultadoBusca.SetTOProperty "innertext", requisicaoDeCompraLiberada
+	
+	condition = numeroRequisicoes = "1" and requisicaoResultadoBusca.Exist(3)
+	assertCondition condition, "Validar busca da requisição nº: " & requisicaoDeCompraLiberada ,"Requisição encontrada","Requisição não encontrada"
+	
+	Browser("agregador").Page("Página inicial").WebElement("checkbox_FirstElementResultTable").Click
+	Browser("agregador").Page("Página inicial").WebElement("Button_Agregar").Click
+	
+	If Browser("agregador").Page("Página inicial").WebEdit("Input_FimDaValidade").Exist(7) Then
+		Browser("agregador").Page("Página inicial").WebEdit("Input_FimDaValidade").Set fechasap
+		Browser("agregador").Page("Página inicial").WebElement("Button_Confirmar_FimDaValidade").Click
+	End If
+	
+	If Browser("agregador").Page("Página inicial").WebElement("Popup_NumeroCotacao").Exist(7) Then
+		mensagemPopup = Browser("agregador").Page("Página inicial").WebElement("Popup_NumeroCotacao").GetROProperty("innertext")
+		condition = mensagemPopup <> ""
+		print "Conteúdo popup: " & mensagemPopup
+		assertCondition condition,"Validar cotação gerada","Cotação gerada com sucesso","Erro ao gerar cotação" 
+	End If    
+	
+	numeroCotacao = extractNumbers(mensagemPopup)
+	AgregarRequisicaoDeCompraFiori = numeroCotacao
+End Function
+
+'SAP GUI FUNCTIONS
+
+Function LogonSapGui(usuario,senha)
+	
+	SAPGuiUtil.AutoLogonByIP "10.240.1.5", "400", usuario, senha, "pt", "01"
+	
+	Set element = SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("Input_Buscar")
+	assertElementExist element,"Validar Logon no SAP S4'","Logon bem sucedido","Falha no logon"
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").Maximize
+End Function
+
+Function AcessarTransacaoSapGui(transacao)
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("Input_Buscar").Set transacao
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SendKey ENTER
+	
+	Set element = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("buttonOutraRequisicaoDeCompra")
+	assertElementExist element,"Validar acesso à transação 'ME54N'","Acesso bem sucedido","Transação não encontrada"
+End Function
+
+Function FecharSapGui()
+	SAPGuiUtil.CloseConnections
+	If Dialog("Window_SAP_Logon_770").Exist Then
+		Dialog("Window_SAP_Logon_770").Close
+	End If
+       
+End Function
+
+Function CloseSap()
+	SAPGuiSession("Session").Close
+End Function
+
+Sub capturarPantallaObjetoDone(Objeto,Titulo, Mensaje)
+	Objeto.CaptureBitmap "image.png", True
+	Reporter.ReportEvent micDone,Titulo , Mensaje, "image.png"
+End Sub
+
+Function Sinteseworkflowaprovacao()
+'Aprobar req de compras
+SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").SAPGuiGrid("GridViewCtrl").SelectCell 1,"Opções de liberação"
+SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").SAPGuiGrid("GridViewCtrl").ClickCell 1,"Opções de liberação"
+'leer barra de status con codigo de liberacion y con numero de liberacion
+Infostatus =  SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").SAPGuiStatusBar("StatusBar").GetROProperty("text")
+codigoliberacion = Trim(Mid(Infostatus,41, 43))
+'msgbox codigoliberacion
+SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").SAPGuiButton("Gravar   (Ctrl+S)").Click
+Texto = SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").SAPGuiStatusBar("StatusBar").GetROProperty("text")
+SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").CaptureBitmap "image.png", True
+Reporter.ReportEvent micDone,"Workflow" , Texto, "image.png"
+Numeroliberacion = obtieneDigitos(Texto)
+SAPGuiSession("CJI5").SAPGuiWindow("Liberar Requisição compra").SAPGuiButton("Voltar   (F3)").Click
+Sinteseworkflowaprovacao = Texto
+End Function
+
+
+Function CJI5Verificarcompromissoorcamentario(acc, perfilbd, PEP, datain, dataout, reqcompra)
+'acc
+SAPGuiSession("CJI5").SAPGuiWindow("Definir ACC").SAPGuiEdit("Área contab.custos").Set acc
+SAPGuiSession("CJI5").SAPGuiWindow("Definir ACC").SAPGuiButton("Avançar   (ENTER)").Click
+
+'perfil bd
+SAPGuiSession("CJI5").SAPGuiWindow("Entrar perfil").SAPGuiEdit("Perfil BD").Set "000000000001"
+SAPGuiSession("CJI5").SAPGuiWindow("Entrar perfil").SAPGuiButton("Avançar   (ENTER)").Click
+'datos de busqueda 
+SAPGuiSession("CJI5").SAPGuiWindow("Projetos: exibir part.indiv.co").SAPGuiEdit("Elemento PEP").Set PEP
+SAPGuiSession("CJI5").SAPGuiWindow("Projetos: exibir part.indiv.co").SAPGuiEdit("Data de débito prevista").Set datain
+SAPGuiSession("CJI5").SAPGuiWindow("Projetos: exibir part.indiv.co").SAPGuiEdit("até").Set dataout
+SAPGuiSession("CJI5").SAPGuiWindow("Projetos: exibir part.indiv.co").SAPGuiButton("Executar   (F8)").Click
+'filtrar
+SAPGuiSession("CJI5").SAPGuiWindow("Exibir part.indiv.do compromis").SAPGuiGrid("GridViewCtrl").SelectColumn "#9"
+SAPGuiSession("CJI5").SAPGuiWindow("Exibir part.indiv.do compromis").SAPGuiButton("Definir filtro   (Ctrl+F5)").Click
+'valores de criterio para filtro
+SAPGuiSession("CJI5").SAPGuiWindow("Determinar valores para").SAPGuiEdit("Nº doc.de referência").Set reqcompra
+SAPGuiSession("CJI5").SAPGuiWindow("Determinar valores para").SAPGuiButton("Executar   (ENTER)").Click
+SAPGuiSession("CJI5").SAPGuiWindow("Exibir part.indiv.do compromis").SAPGuiButton("Voltar   (F3)").Click
+
+'fechar
+End Function
+
+Function fechaFormatoSAP(dFecha)
+	'Esta funcion formatea la fecha dada por vb (1/1/1990) a su formato con ceros delante de los números (01.01.1990)
+	'separada por puntos como requiere el formato usado en SAP GUI
+	' ya que visual basic los quita.
+	fechaFormatoSAP = False
+	If IsDate(dFecha) Then
+		fechaFormatoSAP = Right("0" & DatePart("d",dFecha), 2) _ 
+	        & "." & Right("0" & DatePart("m",dFecha), 2) _ 
+	        & "." & DatePart("yyyy",dFecha)
+	End If
+End Function

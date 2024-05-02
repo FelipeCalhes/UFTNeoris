@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<Results version="1.0">
+<ReportNode type="testrun">
+<ReportNode type="Iteration">
+<ReportNode type="Action">
+<ReportNode type="Step">
+<Data>
+    <Name>SystemUtil.Run "CHROME.EXE",3</Name>
+    <StartTime>2024-04-30 16:09:05</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <IconKey>be009be3a1474ab196ab224deed213dd</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Logon</Name>
+    <ErrorText>Cannot identify the object "Logon" (of class Browser).
+Verify that this object's properties match an object currently displayed in your application.</ErrorText>
+    <Description>Cannot&amp;nbsp;identify&amp;nbsp;the&amp;nbsp;object&amp;nbsp;"Logon"&amp;nbsp;(of&amp;nbsp;class&amp;nbsp;Browser).&lt;br/&gt;Verify&amp;nbsp;that&amp;nbsp;this&amp;nbsp;object's&amp;nbsp;properties&amp;nbsp;match&amp;nbsp;an&amp;nbsp;object&amp;nbsp;currently&amp;nbsp;displayed&amp;nbsp;in&amp;nbsp;your&amp;nbsp;application.&lt;br/&gt;&lt;br/&gt;Object's physical description:&lt;br&gt;Mercury Class = Browser&lt;br&gt;CreationTime = 0&lt;br&gt;|Title = Logon&lt;br&gt;openurl = http://sapvdfiodtc01.latam.corp.net:8012/sap/bc/ui5_ui5/ui2/ushell/shells/abap/Fiorilaunchpad.html&lt;br&gt;opentitle = Logon&lt;br&gt;Opened By Testing Tool = 0&lt;br&gt;number of tabs = 1&lt;br&gt;Name = Logon&lt;br&gt;</Description>
+    <StartTime>2024-04-30 16:09:30</StartTime>
+    <Result>Failed</Result>
+    <Extension>
+      <StackTrace>
+        <StackFrame>
+          <ModuleName><![CDATA[FuncLibExecutableUnitName]]></ModuleName>
+          <FileName><![CDATA[C:\AEGEA\UFT\TESTES\MM40\MM40\FunctionLibrary\Fcn_Generais.qfl]]></FileName>
+          <Language><![CDATA[Browser("Logon").Sync]]></Language>
+          <FunctionName><![CDATA[LoginFiori]]></FunctionName>
+          <Scripts><![CDATA[Browser("Logon").Sync]]></Scripts>
+          <LineNo><![CDATA[234]]></LineNo>
+        </StackFrame>
+        <StackFrame>
+          <ModuleName><![CDATA[Action1]]></ModuleName>
+          <FileName><![CDATA[Action1]]></FileName>
+          <Language><![CDATA[VBScript - script block]]></Language>
+          <FunctionName><![CDATA[VBScript global code]]></FunctionName>
+          <Scripts><![CDATA[LoginFiori]]></Scripts>
+          <LineNo><![CDATA[31]]></LineNo>
+        </StackFrame>
+      </StackTrace>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Cannot&nbsp;identify&nbsp;the&nbsp;object&nbsp;"Logon"&nbsp;(of&nbsp;class&nbsp;Browser).<br/>Verify&nbsp;that&nbsp;this&nbsp;object's&nbsp;properties&nbsp;match&nbsp;an&nbsp;object&nbsp;currently&nbsp;displayed&nbsp;in&nbsp;your&nbsp;application.]]></OperationData>
+      </TestObject>
+      <IconKey>25655673dd5f4609b60253ebb3622f68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <NodeType>Run Error</NodeType>
+    </Extension>
+    <Snapshot reference="Resources\Snapshots\3ea06085-320f-468b-906f-788214ad4e1e.jpeg" />
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Stop Run</Name>
+    <Description>Run stopped by user.</Description>
+    <StartTime>2024-04-30 16:09:54</StartTime>
+    <Result>Information</Result>
+    <Extension>
+      <IconKey>261b0009dc674b518ccc122868cc8e7a</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Logon</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:09:30</StartTime>
+    <Duration>24</Duration>
+    <Result>Failed</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>25655673dd5f4609b60253ebb3622f68</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Action1</Name>
+    <Description />
+    <StartTime>2024-04-30 16:09:04</StartTime>
+    <Duration>50</Duration>
+    <Result>Failed</Result>
+    <InputParameters>
+      <Parameter name="usuario" value="T3MMUNOZ" type="System.String" />
+    </InputParameters>
+    <Extension>
+      <IconKey>f192075a2be74d72b3a9ccd36fd4a7da</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Action0</Name>
+    <Description />
+    <StartTime>2024-04-30 16:09:04</StartTime>
+    <Duration>50</Duration>
+    <Result>Failed</Result>
+    <Extension>
+      <IconKey>e299e66a26b84f64b3a648c134e08cc7</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Index>1</Index>
+    <TestedApplications />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>MM40</Name>
+    <ToolName>OpenText UFT One</ToolName>
+    <ToolVersion>23.4</ToolVersion>
+    <ToolVersionStringLiteral>23.4</ToolVersionStringLiteral>
+    <Description />
+    <StartTime>2024-04-30 16:09:03</StartTime>
+    <Duration>51</Duration>
+    <Result>Failed</Result>
+    <InputParameters>
+      <Parameter name="usuario" value="" type="System.String" />
+    </InputParameters>
+    <Extension>
+      <IconKey>c6d4c9f654614d03b17f83fcb51311d0</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Environment>
+      <Timezone>-03:00:00</Timezone>
+      <Locale>português (Brasil)</Locale>
+      <User>USER</User>
+      <CpuInfo>Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz</CpuInfo>
+      <NumberOfCores>8</NumberOfCores>
+      <TotalMemory>16195</TotalMemory>
+      <HostName>DESKTOP-8KTKOM3</HostName>
+      <OSInfo>Windows 10 22H2 (x64)</OSInfo>
+    </Environment>
+    <TestedApplications />
+    <Links>
+      <Link type="DataTable" reference="Default.xlsx" displayname="Default Data Table" />
+    </Links>
+  </Data>
+</ReportNode>
+<GeneralInfo>
+    <ResultName>Res4</ResultName>
+    <RunStartTime>2024-04-30 16:09:03</RunStartTime>
+    <Timezone>-03:00:00</Timezone>
+    <OrchestrationToolName>OpenText UFT One</OrchestrationToolName>
+    <OrchestrationToolVersion>23.4</OrchestrationToolVersion>
+    <OrchestrationToolVersionStringLiteral>23.4</OrchestrationToolVersionStringLiteral>
+  </GeneralInfo>
+</Results>

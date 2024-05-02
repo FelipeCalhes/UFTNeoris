@@ -1,0 +1,2035 @@
+<?xml version="1.0"?>
+<Results version="1.0">
+<ReportNode type="testrun">
+<ReportNode type="Iteration">
+<ReportNode type="Action">
+<ReportNode type="Step">
+<Data>
+    <Name>SystemUtil.Run "CHROME.EXE",3</Name>
+    <StartTime>2024-04-30 16:41:39</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <IconKey>e6df0fbf2235427db1b6228a7a326287</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Logon.Sync</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <Operation>Sync</Operation>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Input_Usuario.Exist</Name>
+    <Description>"Object exists"</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>WebEdit</Type>
+            <Name><![CDATA[Input_Usuario]]></Name>
+          </Object>
+        </Path>
+        <Operation>Exist</Operation>
+        <OperationData><![CDATA["Object exists"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[USERNAME_FIELD-inner]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>6ef64053fd674bfb840327d88c925fed</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Logon</Name>
+    <Description>Page</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Duration>0</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Page]]></OperationData>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Logon</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Duration>0</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>Acessar Página de Logon</Name>
+    <Description>Acesso bem sucedido</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>11f20d35f9fe47729f3bb9abfd8d9413</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Input_Usuario.Set</Name>
+    <Description>"T3MMUNOZ "</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>WebEdit</Type>
+            <Name><![CDATA[Input_Usuario]]></Name>
+          </Object>
+        </Path>
+        <Operation>Set</Operation>
+        <OperationData><![CDATA["T3MMUNOZ "]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[USERNAME_FIELD-inner]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>6ef64053fd674bfb840327d88c925fed</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Input_Senha.Set</Name>
+    <Description>"argo.MY20"</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>WebEdit</Type>
+            <Name><![CDATA[Input_Senha]]></Name>
+          </Object>
+        </Path>
+        <Operation>Set</Operation>
+        <OperationData><![CDATA["argo.MY20"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[PASSWORD_FIELD-inner]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>6ef64053fd674bfb840327d88c925fed</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Input_Mandante.Set</Name>
+    <Description>"400"</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>WebEdit</Type>
+            <Name><![CDATA[Input_Mandante]]></Name>
+          </Object>
+        </Path>
+        <Operation>Set</Operation>
+        <OperationData><![CDATA["400"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[CLIENT_FIELD-inner]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>6ef64053fd674bfb840327d88c925fed</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Button_Logon.Click</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>WebButton</Type>
+            <Name><![CDATA[Button_Logon]]></Name>
+          </Object>
+        </Path>
+        <Operation>Click</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[LOGIN_LINK]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>634e8a393bd745fc98b8d49d7c34eb32</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Button_UsuarioLogado.Exist</Name>
+    <Description>"Object exists"</Description>
+    <StartTime>2024-04-30 16:41:51</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>WebButton</Type>
+            <Name><![CDATA[Button_UsuarioLogado]]></Name>
+          </Object>
+        </Path>
+        <Operation>Exist</Operation>
+        <OperationData><![CDATA["Object exists"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[meAreaHeaderButton]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>634e8a393bd745fc98b8d49d7c34eb32</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Logon</Name>
+    <Description>Page</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Duration>9</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Page]]></OperationData>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Logon</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:41:42</StartTime>
+    <Duration>9</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\GUIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Logon]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>Logon FIORI</Name>
+    <Description>Logon bem sucedido</Description>
+    <StartTime>2024-04-30 16:41:51</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>11f20d35f9fe47729f3bb9abfd8d9413</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Página inicial.Sync</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:51</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+        </Path>
+        <Operation>Sync</Operation>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Button_Procurar.Exist</Name>
+    <Description>"Object exists"</Description>
+    <StartTime>2024-04-30 16:41:53</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPUIButton</Type>
+            <Name><![CDATA[Button_Procurar]]></Name>
+          </Object>
+        </Path>
+        <Operation>Exist</Operation>
+        <OperationData><![CDATA["Object exists"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[type]]></Name>
+            <Value><![CDATA[]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[Procurar]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[html tag]]></Name>
+            <Value><![CDATA[A]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>5a952e0ceb2d4eb5902bf220329c23c3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Button_Procurar.Click()</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:53</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPUIButton</Type>
+            <Name><![CDATA[Button_Procurar]]></Name>
+          </Object>
+        </Path>
+        <Operation>Click()</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[type]]></Name>
+            <Value><![CDATA[]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[Procurar]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[html tag]]></Name>
+            <Value><![CDATA[A]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>5a952e0ceb2d4eb5902bf220329c23c3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Input_Procurar.Set(Criar requisição de compra - Ampliado)</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:54</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPUITextEdit</Type>
+            <Name><![CDATA[Input_Procurar]]></Name>
+          </Object>
+        </Path>
+        <Operation>Set(Criar requisição de compra - Ampliado)</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[Procurar em: Aplicações]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[html tag]]></Name>
+            <Value><![CDATA[DIV]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>5ebb4ea9fe3f4c14ba1ae33860bc8b28</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Button_ProcurarApp.Click</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:55</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>WebElement</Type>
+            <Name><![CDATA[Button_ProcurarApp]]></Name>
+          </Object>
+        </Path>
+        <Operation>Click</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[html id]]></Name>
+            <Value><![CDATA[searchFieldInShell-button-inner]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[class]]></Name>
+            <Value><![CDATA[sapMBtnInner sapMBtnHoverable sapMFocusable sapMBtnIconFirst sapMBtnEmphasized]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>8199c629159f49d8ac32c54c4081d3e8</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Página inicial.Sync</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:55</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+        </Path>
+        <Operation>Sync</Operation>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Card_CriarRequisicaoDeCompraAmpliado_focus.WaitProperty</Name>
+    <Description>"visible", True, True, 10</Description>
+    <StartTime>2024-04-30 16:42:21</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>WebElement</Type>
+            <Name><![CDATA[Card_CriarRequisicaoDeCompraAmpliado_focus]]></Name>
+          </Object>
+        </Path>
+        <Operation>WaitProperty</Operation>
+        <OperationData><![CDATA["visible", True, True, 10]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[visible]]></Name>
+            <Value><![CDATA[True]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[innertext]]></Name>
+            <Value><![CDATA[Criar requisição de compraAmpliadoME51N]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[html tag]]></Name>
+            <Value><![CDATA[DIV]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[class]]></Name>
+            <Value><![CDATA[sapUshellSearchTileWrapper sapMGT OneByOne]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>8199c629159f49d8ac32c54c4081d3e8</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Card_CriarRequisicaoDeCompraAmpliado.Click</Name>
+    <Description />
+    <StartTime>2024-04-30 16:42:21</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>WebElement</Type>
+            <Name><![CDATA[Card_CriarRequisicaoDeCompraAmpliado]]></Name>
+          </Object>
+        </Path>
+        <Operation>Click</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[visible]]></Name>
+            <Value><![CDATA[True]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[innertext]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[html tag]]></Name>
+            <Value><![CDATA[SPAN]]></Value>
+          </Property>
+          <Property>
+            <Name><![CDATA[class]]></Name>
+            <Value><![CDATA[sapMTextMaxLine sapMTextLineClamp]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>8199c629159f49d8ac32c54c4081d3e8</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Página inicial</Name>
+    <Description>Page</Description>
+    <StartTime>2024-04-30 16:41:51</StartTime>
+    <Duration>43</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Page]]></OperationData>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Página inicial</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:41:51</StartTime>
+    <Duration>43</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Página inicial]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>"Criar requisição de compra"- Smart Identification</Name>
+    <Description>&lt;P&gt;&lt;span class="text"&gt;The smart identification mechanism was invoked.&lt;/span&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN class=text&gt;Reason: object not unique (2 objects found)&lt;/SPAN&gt;&lt;/P&gt;           &lt;SPAN class=text&gt;&lt;b&gt;Original description:&lt;/b&gt;&lt;/SPAN&gt;&lt;br&gt;micclass=Browser&lt;br&gt;&lt;P&gt;&lt;FONT face=Verdana size=2&gt;&lt;SPAN class=text&gt;&lt;B&gt;Smart Identification Alternative Description: &lt;/B&gt;&lt;/SPAN&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;FONT face=Verdana size=2&gt;&lt;u&gt;Base filter properties (2 objects found)&amp;nbsp;&lt;/FONT&gt;&lt;/u&gt;&lt;br&gt;
+micclass=Browser&lt;br&gt;&lt;br&gt;&lt;FONT face=Verdana size=2&gt;&lt;u&gt;Optional filter properties&lt;/FONT&gt;&lt;/u&gt;&lt;br&gt;
+name=Criar requisição de compra&lt;SPAN class=Failed&gt; (Skipped)&lt;/SPAN&gt;&lt;br&gt;title=Criar requisição de compra&lt;SPAN class=Failed&gt; (Skipped)&lt;/SPAN&gt;&lt;br&gt;openurl=http://sapvdfiodtc01.latam.corp.net:8012/sap/bc/ui5_ui5/ui2/ushell/shells/abap/Fiorilaunchpad.html?sap-client=400&amp;sap-language=PT#PurchaseRequisition-create?sap-ui-tech-hint=GUI&amp;/h4screen=advanced&lt;SPAN class=passed&gt; (Used&lt;/SPAN&gt;, 1 matches)&lt;/SPAN&gt;&lt;br&gt;opentitle=&lt;SPAN class=warning&gt; (Ignored)&lt;FONT color=#000000&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;br&gt;openedbytestingtool=0&lt;SPAN class=warning&gt; (Ignored)&lt;FONT color=#000000&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;br&gt;number of tabs=3&lt;SPAN class=warning&gt; (Ignored)&lt;FONT color=#000000&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;br&gt;</Description>
+    <StartTime>2024-04-30 16:42:34</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <SmartIdentificationInfo>
+        <SIDBasicProperties>
+          <Property>
+            <Name><![CDATA[micclass]]></Name>
+            <Value><![CDATA[Browser]]></Value>
+          </Property>
+          <BasicMatch>2</BasicMatch>
+        </SIDBasicProperties>
+        <SIDOptionalProperties>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+            <Info><![CDATA[Skipped]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[title]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+            <Info><![CDATA[Skipped]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[openurl]]></Name>
+            <Value><![CDATA[http://sapvdfiodtc01.latam.corp.net:8012/sap/bc/ui5_ui5/ui2/ushell/shells/abap/Fiorilaunchpad.html?sap-client=400&amp;sap-language=PT#PurchaseRequisition-create?sap-ui-tech-hint=GUI&amp;/h4screen=advanced]]></Value>
+            <Info><![CDATA[Used]]></Info>
+            <Matches>1</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[opentitle]]></Name>
+            <Value><![CDATA[]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[openedbytestingtool]]></Name>
+            <Value><![CDATA[False]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[number of tabs]]></Name>
+            <Value><![CDATA[3]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+        </SIDOptionalProperties>
+      </SmartIdentificationInfo>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not unique (2 objects found)</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+name=Criar requisição de compra<SPAN class=Failed> (Skipped)</SPAN><br>title=Criar requisição de compra<SPAN class=Failed> (Skipped)</SPAN><br>openurl=http://sapvdfiodtc01.latam.corp.net:8012/sap/bc/ui5_ui5/ui2/ushell/shells/abap/Fiorilaunchpad.html?sap-client=400&sap-language=PT#PurchaseRequisition-create?sap-ui-tech-hint=GUI&/h4screen=advanced<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>opentitle=<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>number of tabs=3<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></OperationData>
+      </TestObject>
+      <IconKey>3aad40cb4e4545588c9b7bc746394245</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Dropdown_TipoDeDocumento.Exist</Name>
+    <Description>"Object exists"</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPList</Type>
+            <Name><![CDATA[Dropdown_TipoDeDocumento]]></Name>
+          </Object>
+        </Path>
+        <Operation>Exist</Operation>
+        <OperationData><![CDATA["Object exists"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[1]/INPUT[@role="textbox"][1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>472786bff51f4c698c4836fdd35961f3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>SAPFrame</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Duration>0</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[SAPFrame]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[title]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>f06d76b4014b4668b8cf9657064279ea</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>Page</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Duration>0</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Page]]></OperationData>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:42:34</StartTime>
+    <Duration>10</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="User">
+<Data>
+    <Name>Acesso ao Aplicativo - Criar requisição de compra - Ampliado</Name>
+    <Description>Acesso bem sucedido</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Result>Passed</Result>
+    <Extension>
+      <IconKey>11f20d35f9fe47729f3bb9abfd8d9413</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <IsPlainTextStepInfo>True</IsPlainTextStepInfo>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Context">
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>Dropdown_TipoDeDocumento.WaitProperty</Name>
+    <Description>"visible", True, True, 7</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPList</Type>
+            <Name><![CDATA[Dropdown_TipoDeDocumento]]></Name>
+          </Object>
+        </Path>
+        <Operation>WaitProperty</Operation>
+        <OperationData><![CDATA["visible", True, True, 7]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[1]/INPUT[@role="textbox"][1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>472786bff51f4c698c4836fdd35961f3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Dropdown_TipoDeDocumento.Select</Name>
+    <Description>"Req Material"</Description>
+    <StartTime>2024-04-30 16:42:48</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPList</Type>
+            <Name><![CDATA[Dropdown_TipoDeDocumento]]></Name>
+          </Object>
+        </Path>
+        <Operation>Select</Operation>
+        <OperationData><![CDATA["Req Material"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[1]/INPUT[@role="textbox"][1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>472786bff51f4c698c4836fdd35961f3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>SAPFrame</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Duration>5</Duration>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[SAPFrame]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[title]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>f06d76b4014b4668b8cf9657064279ea</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Criar requisição de compra.Sync</Name>
+    <Description />
+    <StartTime>2024-04-30 16:42:49</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <Operation>Sync</Operation>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>buttonTelaCheiaTabela.WaitProperty</Name>
+    <Description>"visible", True, True, 5</Description>
+    <StartTime>2024-04-30 16:42:49</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPButton</Type>
+            <Name><![CDATA[buttonTelaCheiaTabela]]></Name>
+          </Object>
+        </Path>
+        <Operation>WaitProperty</Operation>
+        <OperationData><![CDATA["visible", True, True, 5]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[3]/DIV[@role="presentation"][1]/DIV[2]/DIV[@role="presentation"][1]/DIV[1]/DIV[@role="presentation"][1]/DIV[1]/DIV[1]/DIV[1]/TABLE[@role="grid"][1]/THEAD[1]/TR[@role="presentation"][2]/TH[@role="presentation"][1]/DIV[@role="presentation"][1]/DIV[@role="presentation"][1]/DIV[@role="toolbar"][1]/SPAN[27]/DIV[@role="button"][1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>5a952e0ceb2d4eb5902bf220329c23c3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>buttonTelaCheiaTabela.Click</Name>
+    <Description />
+    <StartTime>2024-04-30 16:42:50</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPButton</Type>
+            <Name><![CDATA[buttonTelaCheiaTabela]]></Name>
+          </Object>
+        </Path>
+        <Operation>Click</Operation>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[3]/DIV[@role="presentation"][1]/DIV[2]/DIV[@role="presentation"][1]/DIV[1]/DIV[@role="presentation"][1]/DIV[1]/DIV[1]/DIV[1]/TABLE[@role="grid"][1]/THEAD[1]/TR[@role="presentation"][2]/TH[@role="presentation"][1]/DIV[@role="presentation"][1]/DIV[@role="presentation"][1]/DIV[@role="toolbar"][1]/SPAN[27]/DIV[@role="button"][1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>5a952e0ceb2d4eb5902bf220329c23c3</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>inputMaterial_focus.WaitProperty</Name>
+    <Description>"visible", True, 5</Description>
+    <StartTime>2024-04-30 16:43:23</StartTime>
+    <Result>Warning</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>WebElement</Type>
+            <Name><![CDATA[inputMaterial_focus]]></Name>
+          </Object>
+        </Path>
+        <Operation>WaitProperty</Operation>
+        <OperationData><![CDATA["visible", True, 5]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[@id="userpanel"]/DIV[@role="presentation"][1]/DIV[1]/TABLE[@role="grid"][1]/TBODY[1]/TR[@role="presentation"][2]/TD[@role="presentation"][2]/DIV[1]/DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[@role="gridcell"][3]/DIV[1]/SPAN[1]/SPAN[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>8199c629159f49d8ac32c54c4081d3e8</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>SAPFrame</Description>
+    <StartTime>2024-04-30 16:42:49</StartTime>
+    <Duration>67</Duration>
+    <Result>Warning</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[SAPFrame]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[title]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>f06d76b4014b4668b8cf9657064279ea</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>Page</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Duration>72</Duration>
+    <Result>Warning</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Page]]></OperationData>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:42:44</StartTime>
+    <Duration>72</Duration>
+    <Result>Warning</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>inputC_focus</Name>
+    <ErrorText>Cannot identify the object "inputC_focus" (of class WebElement).
+Verify that this object's properties match an object currently displayed in your application.</ErrorText>
+    <Description>Cannot&amp;nbsp;identify&amp;nbsp;the&amp;nbsp;object&amp;nbsp;"inputC_focus"&amp;nbsp;(of&amp;nbsp;class&amp;nbsp;WebElement).&lt;br/&gt;Verify&amp;nbsp;that&amp;nbsp;this&amp;nbsp;object's&amp;nbsp;properties&amp;nbsp;match&amp;nbsp;an&amp;nbsp;object&amp;nbsp;currently&amp;nbsp;displayed&amp;nbsp;in&amp;nbsp;your&amp;nbsp;application.&lt;br/&gt;&lt;br/&gt;Object's physical description:&lt;br&gt;xpath = //DIV[@id="userpanel"]/DIV[@role="presentation"][1]/DIV[1]/TABLE[@role="grid"][1]/TBODY[1]/TR[@role="presentation"][2]/TD[@role="presentation"][2]/DIV[1]/DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]&lt;br&gt;miccommentproperty = &lt;br&gt;Mercury Class = WebElement&lt;br&gt;Index = 0&lt;br&gt;|Visible = -1&lt;br&gt;Html Id = grid#C114#1,3#if-r&lt;br&gt;DHTML Class = lsField lsField--empty lsField--table lsField--hasellipsis lsField--appendhelp lsField--f4 lsField--interactiontarget lsField--beginofline&lt;br&gt;acc_name = &lt;br&gt;</Description>
+    <StartTime>2024-04-30 16:43:56</StartTime>
+    <Result>Failed</Result>
+    <Extension>
+      <StackTrace>
+        <StackFrame>
+          <ModuleName><![CDATA[FuncLibExecutableUnitName]]></ModuleName>
+          <FileName><![CDATA[C:\AEGEA\UFT\TESTES\MM40\MM40\FunctionLibrary\Fcn_Generais.qfl]]></FileName>
+          <Language><![CDATA[FuncLibExecutableUnitName]]></Language>
+          <FunctionName><![CDATA[CriarReqDeCompraAmpliadoFiori1]]></FunctionName>
+          <Scripts><![CDATA[Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputC_focus").Click]]></Scripts>
+          <LineNo><![CDATA[453]]></LineNo>
+        </StackFrame>
+        <StackFrame>
+          <ModuleName><![CDATA[Action1]]></ModuleName>
+          <FileName><![CDATA[Action1]]></FileName>
+          <Language><![CDATA[VBScript global code]]></Language>
+          <FunctionName><![CDATA[VBScript global code]]></FunctionName>
+          <Scripts><![CDATA[CriarReqDeCompraAmpliadoFiori1]]></Scripts>
+          <LineNo><![CDATA[33]]></LineNo>
+        </StackFrame>
+      </StackTrace>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>WebElement</Type>
+            <Name><![CDATA[inputC_focus]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Cannot&nbsp;identify&nbsp;the&nbsp;object&nbsp;"inputC_focus"&nbsp;(of&nbsp;class&nbsp;WebElement).<br/>Verify&nbsp;that&nbsp;this&nbsp;object's&nbsp;properties&nbsp;match&nbsp;an&nbsp;object&nbsp;currently&nbsp;displayed&nbsp;in&nbsp;your&nbsp;application.]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[@id="userpanel"]/DIV[@role="presentation"][1]/DIV[1]/TABLE[@role="grid"][1]/TBODY[1]/TR[@role="presentation"][2]/TD[@role="presentation"][2]/DIV[1]/DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>8199c629159f49d8ac32c54c4081d3e8</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <NodeType>Run Error</NodeType>
+    </Extension>
+    <Snapshot reference="Resources\Snapshots\026eb7de-685d-4b8e-a4d9-e496b6fae8cd.jpeg" highlight="0,0,1928,1027" />
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>"inputC"- Description mismatch</Name>
+    <Description>The object was not found using the test object description. Check the object's properties.</Description>
+    <StartTime>2024-04-30 16:44:32</StartTime>
+    <Result>Warning</Result>
+    <Extension>
+      <SmartIdentificationInfo>
+        <SIDBasicProperties>
+          <Property>
+            <Name><![CDATA[micclass]]></Name>
+            <Value><![CDATA[SAPEdit]]></Value>
+          </Property>
+          <BasicMatch>2</BasicMatch>
+        </SIDBasicProperties>
+        <SIDOptionalProperties>
+          <Property>
+            <Name><![CDATA[max length]]></Name>
+            <Value><![CDATA[1]]></Value>
+            <Info><![CDATA[Skipped]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[readonly]]></Name>
+            <Value><![CDATA[0]]></Value>
+            <Info><![CDATA[Used]]></Info>
+            <Matches>1</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[InputField]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+        </SIDOptionalProperties>
+      </SmartIdentificationInfo>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPEdit</Type>
+            <Name><![CDATA[inputC]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[The object was not found using the test object description. Check the object's properties.]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>aca545fd2f1541538a20fc9d4cc5f95a</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>"inputC"- Smart Identification</Name>
+    <Description>&lt;P&gt;&lt;span class="text"&gt;The smart identification mechanism was invoked.&lt;/span&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN class=text&gt;Reason: object not found.&lt;/SPAN&gt;&lt;/P&gt;           &lt;SPAN class=text&gt;&lt;b&gt;Original description:&lt;/b&gt;&lt;/SPAN&gt;&lt;br&gt;xpath=//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]&lt;br&gt;micclass=SAPEdit&lt;br&gt;&lt;P&gt;&lt;FONT face=Verdana size=2&gt;&lt;SPAN class=text&gt;&lt;B&gt;Smart Identification Alternative Description: &lt;/B&gt;&lt;/SPAN&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;FONT face=Verdana size=2&gt;&lt;u&gt;Base filter properties (2 objects found)&amp;nbsp;&lt;/FONT&gt;&lt;/u&gt;&lt;br&gt;
+micclass=SAPEdit&lt;br&gt;&lt;br&gt;&lt;FONT face=Verdana size=2&gt;&lt;u&gt;Optional filter properties&lt;/FONT&gt;&lt;/u&gt;&lt;br&gt;
+max length=1&lt;SPAN class=Failed&gt; (Skipped)&lt;/SPAN&gt;&lt;br&gt;readonly=0&lt;SPAN class=passed&gt; (Used&lt;/SPAN&gt;, 1 matches)&lt;/SPAN&gt;&lt;br&gt;name=InputField&lt;SPAN class=warning&gt; (Ignored)&lt;FONT color=#000000&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;br&gt;</Description>
+    <StartTime>2024-04-30 16:44:32</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <SmartIdentificationInfo>
+        <SIDBasicProperties>
+          <Property>
+            <Name><![CDATA[micclass]]></Name>
+            <Value><![CDATA[SAPEdit]]></Value>
+          </Property>
+          <BasicMatch>2</BasicMatch>
+        </SIDBasicProperties>
+        <SIDOptionalProperties>
+          <Property>
+            <Name><![CDATA[max length]]></Name>
+            <Value><![CDATA[1]]></Value>
+            <Info><![CDATA[Skipped]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[readonly]]></Name>
+            <Value><![CDATA[0]]></Value>
+            <Info><![CDATA[Used]]></Info>
+            <Matches>1</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[InputField]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+        </SIDOptionalProperties>
+      </SmartIdentificationInfo>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPEdit</Type>
+            <Name><![CDATA[inputC]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>xpath=//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]<br>micclass=SAPEdit<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=SAPEdit<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+max length=1<SPAN class=Failed> (Skipped)</SPAN><br>readonly=0<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>name=InputField<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>3aad40cb4e4545588c9b7bc746394245</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>inputC.WaitProperty</Name>
+    <Description>"visible", True, True, 5</Description>
+    <StartTime>2024-04-30 16:44:32</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPEdit</Type>
+            <Name><![CDATA[inputC]]></Name>
+          </Object>
+        </Path>
+        <Operation>WaitProperty</Operation>
+        <OperationData><![CDATA["visible", True, True, 5]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>aca545fd2f1541538a20fc9d4cc5f95a</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>"inputC"- Description mismatch</Name>
+    <Description>The object was not found using the test object description. Check the object's properties.</Description>
+    <StartTime>2024-04-30 16:44:54</StartTime>
+    <Result>Warning</Result>
+    <Extension>
+      <SmartIdentificationInfo>
+        <SIDBasicProperties>
+          <Property>
+            <Name><![CDATA[micclass]]></Name>
+            <Value><![CDATA[SAPEdit]]></Value>
+          </Property>
+          <BasicMatch>2</BasicMatch>
+        </SIDBasicProperties>
+        <SIDOptionalProperties>
+          <Property>
+            <Name><![CDATA[max length]]></Name>
+            <Value><![CDATA[1]]></Value>
+            <Info><![CDATA[Skipped]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[readonly]]></Name>
+            <Value><![CDATA[0]]></Value>
+            <Info><![CDATA[Used]]></Info>
+            <Matches>1</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[InputField]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+        </SIDOptionalProperties>
+      </SmartIdentificationInfo>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPEdit</Type>
+            <Name><![CDATA[inputC]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[The object was not found using the test object description. Check the object's properties.]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>aca545fd2f1541538a20fc9d4cc5f95a</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>"inputC"- Smart Identification</Name>
+    <Description>&lt;P&gt;&lt;span class="text"&gt;The smart identification mechanism was invoked.&lt;/span&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN class=text&gt;Reason: object not found.&lt;/SPAN&gt;&lt;/P&gt;           &lt;SPAN class=text&gt;&lt;b&gt;Original description:&lt;/b&gt;&lt;/SPAN&gt;&lt;br&gt;xpath=//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]&lt;br&gt;micclass=SAPEdit&lt;br&gt;&lt;P&gt;&lt;FONT face=Verdana size=2&gt;&lt;SPAN class=text&gt;&lt;B&gt;Smart Identification Alternative Description: &lt;/B&gt;&lt;/SPAN&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;FONT face=Verdana size=2&gt;&lt;u&gt;Base filter properties (2 objects found)&amp;nbsp;&lt;/FONT&gt;&lt;/u&gt;&lt;br&gt;
+micclass=SAPEdit&lt;br&gt;&lt;br&gt;&lt;FONT face=Verdana size=2&gt;&lt;u&gt;Optional filter properties&lt;/FONT&gt;&lt;/u&gt;&lt;br&gt;
+max length=1&lt;SPAN class=Failed&gt; (Skipped)&lt;/SPAN&gt;&lt;br&gt;readonly=0&lt;SPAN class=passed&gt; (Used&lt;/SPAN&gt;, 1 matches)&lt;/SPAN&gt;&lt;br&gt;name=InputField&lt;SPAN class=warning&gt; (Ignored)&lt;FONT color=#000000&gt;&lt;/FONT&gt;&lt;/SPAN&gt;&lt;br&gt;</Description>
+    <StartTime>2024-04-30 16:44:54</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <SmartIdentificationInfo>
+        <SIDBasicProperties>
+          <Property>
+            <Name><![CDATA[micclass]]></Name>
+            <Value><![CDATA[SAPEdit]]></Value>
+          </Property>
+          <BasicMatch>2</BasicMatch>
+        </SIDBasicProperties>
+        <SIDOptionalProperties>
+          <Property>
+            <Name><![CDATA[max length]]></Name>
+            <Value><![CDATA[1]]></Value>
+            <Info><![CDATA[Skipped]]></Info>
+            <Matches>0</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[readonly]]></Name>
+            <Value><![CDATA[0]]></Value>
+            <Info><![CDATA[Used]]></Info>
+            <Matches>1</Matches>
+          </Property>
+          <Property>
+            <Name><![CDATA[name]]></Name>
+            <Value><![CDATA[InputField]]></Value>
+            <Info><![CDATA[Ignored]]></Info>
+            <Matches>0</Matches>
+          </Property>
+        </SIDOptionalProperties>
+      </SmartIdentificationInfo>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPEdit</Type>
+            <Name><![CDATA[inputC]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<P><span class="text">The smart identification mechanism was invoked.</span></P><P><SPAN class=text>Reason: object not found.</SPAN></P>           <SPAN class=text><b>Original description:</b></SPAN><br>xpath=//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]<br>micclass=SAPEdit<br><P><FONT face=Verdana size=2><SPAN class=text><B>Smart Identification Alternative Description: </B></SPAN></FONT></P><FONT face=Verdana size=2><u>Base filter properties (2 objects found)&nbsp;</FONT></u><br>
+micclass=SAPEdit<br><br><FONT face=Verdana size=2><u>Optional filter properties</FONT></u><br>
+max length=1<SPAN class=Failed> (Skipped)</SPAN><br>readonly=0<SPAN class=passed> (Used</SPAN>, 1 matches)</SPAN><br>name=InputField<SPAN class=warning> (Ignored)<FONT color=#000000></FONT></SPAN><br>]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>3aad40cb4e4545588c9b7bc746394245</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>inputC.Set</Name>
+    <Description>"P"</Description>
+    <StartTime>2024-04-30 16:44:54</StartTime>
+    <Result>Done</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPEdit</Type>
+            <Name><![CDATA[inputC]]></Name>
+          </Object>
+        </Path>
+        <Operation>Set</Operation>
+        <OperationData><![CDATA["P"]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//TD[@role="gridcell"][1]/DIV[1]/SPAN[1]/SPAN[1]/INPUT[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>aca545fd2f1541538a20fc9d4cc5f95a</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>SAPFrame</Description>
+    <StartTime>2024-04-30 16:44:32</StartTime>
+    <Duration>54</Duration>
+    <Result>Warning</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[SAPFrame]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[title]]></Name>
+            <Value><![CDATA[Criar requisição de compra]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>f06d76b4014b4668b8cf9657064279ea</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>Page</Description>
+    <StartTime>2024-04-30 16:44:32</StartTime>
+    <Duration>54</Duration>
+    <Result>Warning</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Page]]></OperationData>
+      </TestObject>
+      <IconKey>2e794fe9b10843b9b60985a0e3f24604</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:43:56</StartTime>
+    <Duration>90</Duration>
+    <Result>Failed</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<ReportNode type="Context">
+<ReportNode type="Step">
+<Data>
+    <Name>inputMaterial_focus</Name>
+    <ErrorText>Cannot identify the object "inputMaterial_focus" (of class WebElement).
+Verify that this object's properties match an object currently displayed in your application.</ErrorText>
+    <Description>Cannot&amp;nbsp;identify&amp;nbsp;the&amp;nbsp;object&amp;nbsp;"inputMaterial_focus"&amp;nbsp;(of&amp;nbsp;class&amp;nbsp;WebElement).&lt;br/&gt;Verify&amp;nbsp;that&amp;nbsp;this&amp;nbsp;object's&amp;nbsp;properties&amp;nbsp;match&amp;nbsp;an&amp;nbsp;object&amp;nbsp;currently&amp;nbsp;displayed&amp;nbsp;in&amp;nbsp;your&amp;nbsp;application.&lt;br/&gt;&lt;br/&gt;Object's physical description:&lt;br&gt;xpath = //DIV[@id="userpanel"]/DIV[@role="presentation"][1]/DIV[1]/TABLE[@role="grid"][1]/TBODY[1]/TR[@role="presentation"][2]/TD[@role="presentation"][2]/DIV[1]/DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[@role="gridcell"][3]/DIV[1]/SPAN[1]/SPAN[1]&lt;br&gt;miccommentproperty = &lt;br&gt;Mercury Class = WebElement&lt;br&gt;Index = 2&lt;br&gt;|Visible = -1&lt;br&gt;Html Id = grid#C114#1,5#if-r&lt;br&gt;DHTML Class = lsField lsField--empty lsField--table lsField--hasellipsis lsField--appendhelp lsField--f4 lsField--hpif lsField--interactiontarget lsField--beginofline&lt;br&gt;acc_name = &lt;br&gt;</Description>
+    <StartTime>2024-04-30 16:45:26</StartTime>
+    <Result>Failed</Result>
+    <Extension>
+      <StackTrace>
+        <StackFrame>
+          <ModuleName><![CDATA[FuncLibExecutableUnitName]]></ModuleName>
+          <FileName><![CDATA[C:\AEGEA\UFT\TESTES\MM40\MM40\FunctionLibrary\Fcn_Generais.qfl]]></FileName>
+          <Language><![CDATA[FuncLibExecutableUnitName]]></Language>
+          <FunctionName><![CDATA[CriarReqDeCompraAmpliadoFiori1]]></FunctionName>
+          <Scripts><![CDATA[Browser("Criar requisição de compra").Page("Criar requisição de compra").SAPFrame("Criar requisição de compra").WebElement("inputMaterial_focus").Click]]></Scripts>
+          <LineNo><![CDATA[465]]></LineNo>
+        </StackFrame>
+        <StackFrame>
+          <ModuleName><![CDATA[Action1]]></ModuleName>
+          <FileName><![CDATA[Action1]]></FileName>
+          <Language><![CDATA[VBScript global code]]></Language>
+          <FunctionName><![CDATA[VBScript global code]]></FunctionName>
+          <Scripts><![CDATA[CriarReqDeCompraAmpliadoFiori1]]></Scripts>
+          <LineNo><![CDATA[33]]></LineNo>
+        </StackFrame>
+      </StackTrace>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>Page</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>SAPFrame</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+          <Object>
+            <Type>WebElement</Type>
+            <Name><![CDATA[inputMaterial_focus]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[Cannot&nbsp;identify&nbsp;the&nbsp;object&nbsp;"inputMaterial_focus"&nbsp;(of&nbsp;class&nbsp;WebElement).<br/>Verify&nbsp;that&nbsp;this&nbsp;object's&nbsp;properties&nbsp;match&nbsp;an&nbsp;object&nbsp;currently&nbsp;displayed&nbsp;in&nbsp;your&nbsp;application.]]></OperationData>
+        <Properties>
+          <Property>
+            <Name><![CDATA[xpath]]></Name>
+            <Value><![CDATA[//DIV[@id="userpanel"]/DIV[@role="presentation"][1]/DIV[1]/TABLE[@role="grid"][1]/TBODY[1]/TR[@role="presentation"][2]/TD[@role="presentation"][2]/DIV[1]/DIV[1]/TABLE[@role="presentation"][1]/TBODY[1]/TR[1]/TD[@role="gridcell"][3]/DIV[1]/SPAN[1]/SPAN[1]]]></Value>
+          </Property>
+        </Properties>
+      </TestObject>
+      <IconKey>8199c629159f49d8ac32c54c4081d3e8</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+      <NodeType>Run Error</NodeType>
+    </Extension>
+    <Snapshot reference="Resources\Snapshots\810f24ee-2860-444d-9e3e-23c0beb56eb1.jpeg" highlight="0,0,1928,1027" />
+    <DeviceInfo />
+  </Data>
+</ReportNode>
+<ReportNode type="Step">
+<Data>
+    <Name>Stop Run</Name>
+    <Description>Run stopped by user.</Description>
+    <StartTime>2024-04-30 17:01:15</StartTime>
+    <Result>Information</Result>
+    <Extension>
+      <IconKey>f5d99175d7df436abade5111eb819554</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Criar requisição de compra</Name>
+    <Description>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;span style="text-align : left; font-size : 12px; "&gt;Local Browser&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</Description>
+    <StartTime>2024-04-30 16:45:26</StartTime>
+    <Duration>949</Duration>
+    <Result>Failed</Result>
+    <Extension>
+      <TestObject>
+        <Repository>Shared ObjectRepository\FIORIObjects.tsr</Repository>
+        <Path>
+          <Object>
+            <Type>Browser</Type>
+            <Name><![CDATA[Criar requisição de compra]]></Name>
+          </Object>
+        </Path>
+        <OperationData><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></OperationData>
+      </TestObject>
+      <IconKey>60ccc7ce431d42f6a42bf63f7959f338</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Action1</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:39</StartTime>
+    <Duration>1176</Duration>
+    <Result>Failed</Result>
+    <InputParameters>
+      <Parameter name="usuario" value="T3MMUNOZ" type="System.String" />
+    </InputParameters>
+    <Extension>
+      <IconKey>5522cebba2814354bfee76487b3a91f6</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+  </Data>
+</ReportNode>
+<Data>
+    <Name>Action0</Name>
+    <Description />
+    <StartTime>2024-04-30 16:41:39</StartTime>
+    <Duration>1176</Duration>
+    <Result>Failed</Result>
+    <Extension>
+      <IconKey>80fcc4fd49aa4a35aaa5c3f80b4daef5</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Index>1</Index>
+    <TestedApplications />
+  </Data>
+</ReportNode>
+<Data>
+    <Name>MM40</Name>
+    <ToolName>OpenText UFT One</ToolName>
+    <ToolVersion>23.4</ToolVersion>
+    <ToolVersionStringLiteral>23.4</ToolVersionStringLiteral>
+    <Description />
+    <StartTime>2024-04-30 16:41:38</StartTime>
+    <Duration>1177</Duration>
+    <Result>Failed</Result>
+    <InputParameters>
+      <Parameter name="usuario" value="" type="System.String" />
+    </InputParameters>
+    <Extension>
+      <IconKey>8d6219e812104d0584a2bd18f3b5091a</IconKey>
+      <IsPlainTextNodeName>True</IsPlainTextNodeName>
+    </Extension>
+    <Environment>
+      <Timezone>-03:00:00</Timezone>
+      <Locale>português (Brasil)</Locale>
+      <User>USER</User>
+      <CpuInfo>Intel(R) Core(TM) i7-8665U CPU @ 1.90GHz</CpuInfo>
+      <NumberOfCores>8</NumberOfCores>
+      <TotalMemory>16195</TotalMemory>
+      <HostName>DESKTOP-8KTKOM3</HostName>
+      <OSInfo>Windows 10 22H2 (x64)</OSInfo>
+    </Environment>
+    <TestedApplications />
+    <Links>
+      <Link type="DataTable" reference="Default.xlsx" displayname="Default Data Table" />
+    </Links>
+  </Data>
+</ReportNode>
+<GeneralInfo>
+    <ResultName>Res8</ResultName>
+    <RunStartTime>2024-04-30 16:41:38</RunStartTime>
+    <Timezone>-03:00:00</Timezone>
+    <OrchestrationToolName>OpenText UFT One</OrchestrationToolName>
+    <OrchestrationToolVersion>23.4</OrchestrationToolVersion>
+    <OrchestrationToolVersionStringLiteral>23.4</OrchestrationToolVersionStringLiteral>
+  </GeneralInfo>
+</Results>

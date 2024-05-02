@@ -1,0 +1,48 @@
+﻿Function LogonSapGui(usuario,senha)
+	
+	SAPGuiUtil.AutoLogonByIP "10.240.1.5", "400", usuario, senha, "pt", "01"
+	
+	Set element = SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("Input_Buscar")
+	assertElementExist element,"Validar Logon no SAP S4'","Logon bem sucedido","Falha no logon"
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").Maximize
+End Function
+
+Function AcessarTransacaoSapGui(transacao)
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("Input_Buscar").Set transacao
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SendKey ENTER
+	
+	Set element = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("buttonOutraRequisicaoDeCompra")
+	assertElementExist element,"Validar acesso à transação 'ME54N'","Acesso bem sucedido","Transação não encontrada"
+End Function
+
+Function FecharSapGui()
+	SAPGuiUtil.CloseConnections
+       if Dialog("Window_SAP_Logon_770").Exist then
+       	Dialog("Window_SAP_Logon_770").Close
+       End If
+End Function
+
+
+Function OutrareqcompraGUI(reqcompra)
+	SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("Outrareqcompra").Click
+	SAPGuiSession("Session").SAPGuiWindow("Selecionar documento").SAPGuiEdit("numerodereqcompra").Set reqcompra
+	SAPGuiSession("Session").SAPGuiWindow("Selecionar documento").SendKey ENTER
+End Function
+
+Function sinteseworkflowGUI()
+	SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiToolbar("ToolBarControl_3").PressButton "%GOS_TOOLBOX"
+	UIAWindow("Liberar Requisição compra 1631").UIAWindow("Requisição de compra 001631531").UIAButton("UIAButton_2").Click
+	UIAMenu("Contexto").UIAObject("Síntese workflow").Click
+	UIAWindow("Liberar Requisição compra 1631").UIAObject("Dados para workflows ligados").UIAObject("SWL1_WIDISP_UEXIT_01.HTM").UIATable("Table").UIATable("Table").UIAHyperlink("Informação...").WaitProperty "visible",true,5
+	UIAWindow("Liberar Requisição compra 1631").UIAObject("Dados para workflows ligados").UIAObject("SWL1_WIDISP_UEXIT_01.HTM").UIATable("Table").UIATable("Table").UIAHyperlink("Informação...").Click
+	SAPGuiSession("Session").SAPGuiWindow("Destinatário:Liberar Requisiçã").Activate
+	SAPGuiSession("Session").SAPGuiWindow("Destinatário:Liberar Requisiçã").CaptureBitmap "image.png", True
+	Reporter.ReportEvent micDone,"Workflow" , "Informacion", "image.png"
+	SAPGuiSession("Session").SAPGuiWindow("Destinatário:Liberar Requisiçã").Close
+	SAPGuiSession("SAPGUI_Session").SAPGuiWindow("Dados para workflows ligados").Close
+End Function
+
+Function SAPStatusBar()
+Texto = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiStatusBar("StatusBar").GetROProperty("text")
+    SAPStatusBar = Texto
+End Function

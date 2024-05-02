@@ -1,0 +1,215 @@
+﻿
+Function assertElementExist(element,assertionTitle,successMessage,failureMessage)
+		If  element.Exist(30) Then
+			Reporter.ReportEvent micPass, assertionTitle, successMessage
+	        else
+			Reporter.ReportEvent micFail, assertionTitle, failureMessage
+			ExitTestIteration
+	       End If
+End Function
+
+Function assertCondition(condition,assertionTitle,successMessage,failureMessage)
+		If  condition Then
+			Reporter.ReportEvent micPass, assertionTitle, successMessage
+	        else
+			Reporter.ReportEvent micFail, assertionTitle, failureMessage
+			ExitTestIteration
+	       End If
+End Function
+
+Function assertFalse(assertionTitle, failureMessage)
+		Reporter.ReportEvent micFail, assertionTitle, failureMessage
+		ExitTestIteration
+End Function
+
+Function assertFalse(assertionTitle, failureMessage)
+		Reporter.ReportEvent micFail, assertionTitle, failureMessage
+		ExitTestIteration
+End Function
+
+Function validateMessageByRegExp(ByVal message, ByVal pattern)   
+    Dim re, matches, match
+    Set re = New RegExp
+    re.Pattern = pattern 											
+    re.Global = True
+    Set matches = re.Execute(message)
+    
+    If matches.Count > 0 Then
+        validateMessageByRegExp = True
+    Else
+        validateMessageByRegExp = False
+    End If
+End Function
+
+Function obtieneDigitos(sTexto)
+	'Dado un texto, esta función devuelve solamente sus número.
+	'Ej: para el string "as213asd32" se devuelve solo "21332"
+
+	x=Len(sTexto)    
+	num = ""
+	For i=0 to x-1 
+		char = Mid(sTexto,i+1,1)    
+		If IsNumeric(char) Then
+			num = num & char
+		End If
+	Next    
+	
+	obtieneDigitos = num
+	
+End Function
+
+Function extractNumbers(ByVal text)
+    Dim numbers, character, i
+    numbers = ""
+    
+    For i = 1 To Len(text)
+        character = Mid(text, i, 1)
+        If IsNumeric(character) Then
+            If Len(numbers & character) > Len(numbers) Then
+                numbers = numbers & character
+            End If
+        End If
+    Next
+    If Len(numbers > 2) Then
+	If Mid(numbers, 1,2) = "00" Then
+		tamanhoString = Len(numbers) - 2
+		numbers = Mid(numbers, 3, tamanhoString)
+	End If    	
+    End If
+    
+    extractNumbers = numbers
+End Function
+
+
+Function closeAllTabs()
+	Browser("CreationTime:=0").CloseAllTabs
+End Function
+
+' Exemplo de uso
+SendKey "{ENTER}" ' Envia a tecla Enter
+SendKey "{TAB}" ' Envia a tecla Tab
+Function SendKey(key)
+    Set objShell = CreateObject("WScript.Shell")
+    objShell.SendKeys key
+End Function
+
+' Exemplo de uso da função
+' Dim colunas
+' colunas = Array("Nome", "Idade", "Cidade")
+' CriarArquivoCSV "Caminho\\Para\\O\\Arquivo.csv", colunas
+
+Sub CriarArquivoCSV(nomeArquivo, colunas)
+    Dim fso, arquivo, linha, coluna
+    
+    ' Criação do objeto FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Cria o arquivo CSV
+    Set arquivo = fso.CreateTextFile(nomeArquivo, True)
+    
+    ' Escreve os nomes das colunas no arquivo
+    For Each coluna In colunas
+        linha = linha & coluna & ","
+    Next
+    
+    ' Remove a última vírgula
+    linha = Left(linha, Len(linha) - 1)
+    arquivo.WriteLine(linha)
+    
+    ' Fecha o arquivo
+    arquivo.Close
+End Sub
+
+' Exemplo de uso da função
+' Dim dados
+' Set dados = CreateObject("Scripting.Dictionary")
+' dados.Add "Nome", "João"
+' dados.Add "Idade", "30"
+' dados.Add "Cidade", "São Paulo"
+' PreencherLinhaCSV "Caminho\\Para\\O\\Arquivo.csv", dados
+Sub PreencherLinhaCSV(nomeArquivo, dados)
+    Const ForReading = 1, ForWriting = 2, ForAppending = 8
+    Const TristateUseDefault = -2, TristateTrue = -1, TristateFalse = 0
+    Dim fso, arquivo, linha, coluna, valor, colunas, linhaAtual, colunaAtual, encontrouLinhaVazia
+    
+    ' Criação do objeto FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Verifica se o arquivo existe antes de abrir
+    If Not fso.FileExists(nomeArquivo) Then
+        ' Se o arquivo não existe, cria um novo e escreve os nomes das colunas
+        Set arquivo = fso.CreateTextFile(nomeArquivo)
+        arquivo.WriteLine Join(dados.Keys, ",")
+    Else
+        ' Abre o arquivo CSV para leitura
+        Set arquivo = fso.OpenTextFile(nomeArquivo, ForReading)
+        
+        ' Lê a primeira linha para obter os nomes das colunas
+        colunas = Split(arquivo.ReadLine, ",")
+        For Each coluna in colunas
+        	print coluna
+        Next
+        
+        ' Procura a próxima linha vazia
+        encontrouLinhaVazia = False
+        Do While Not arquivo.AtEndOfStream
+            linhaAtual = arquivo.ReadLine
+            linhaAtual = Replace(linhaAtual, """", "") ' Remove as aspas
+            colunasNaLinha = Split(linhaAtual, ",")
+            For Each colunaAtual In colunas
+                If Trim(colunasNaLinha(ArrayIndexOf(colunas, colunaAtual))) = "" Then
+                    ' Encontrou uma linha vazia na coluna correspondente
+                    encontrouLinhaVazia = True
+                    Exit Do
+                End If
+            Next
+        Loop
+        
+       ' Fecha o arquivo antes de reabrir no modo de escrita
+        arquivo.Close
+        Set arquivo = fso.OpenTextFile(nomeArquivo, ForAppending, True) ' Modo de escrita (append)
+        
+        ' Se não encontrou uma linha vazia, adiciona uma nova linha
+'        If Not encontrouLinhaVazia Then
+'            arquivo.WriteLine ""
+'        End If
+        
+
+    End If
+    
+    ' Monta a linha com os dados
+    linha = ""
+    For Each coluna In colunas
+        valor = dados(coluna)
+        linha = linha & valor & ","
+    Next
+    
+    ' Remove a última vírgula
+    linha = Left(linha, Len(linha) - 1)
+    arquivo.WriteLine linha
+    
+    ' Fecha o arquivo
+    arquivo.Close
+End Sub
+
+
+' Função auxiliar para encontrar o índice de um valor em um array
+Function ArrayIndexOf(arr, val)
+    Dim i
+    For i = LBound(arr) To UBound(arr)
+        If arr(i) = val Then
+            ArrayIndexOf = i
+            Exit Function
+        End If
+    Next
+    ArrayIndexOf = -1
+End Function
+
+
+
+
+
+
+
+
+

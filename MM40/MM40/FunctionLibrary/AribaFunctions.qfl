@@ -1,0 +1,18 @@
+﻿Function LogonAriba(usuario,senha,isSenhaCriptograda)
+	SystemUtil.Run "chrome", "https://s1.ariba.com/Sourcing/Main?realm=aegea-t&passwordadapter=ThirdPartyUser"
+
+	Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebEdit("Input_NomeDeUsuario").Set usuario
+	If isSenhaCriptograda Then
+		Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebEdit("Input_Senha").SetSecure senha
+	Else
+		Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebEdit("Input_Senha").Set senha
+	End If
+	
+	Browser("Aegea - Ariba Spend Management").Page("Aegea - Ariba Spend Management").WebButton("Button_Acessar").Click
+	
+	Set element = Browser("Aegea - Ariba Spend Management_2").Page("Aegea - Ariba Spend Management - Home").WebEdit("Input_Pesquisar_AbaSourcing")
+	assertElementExist element,"Logon Ariba","Logon bem sucedido","Falha no Logon"
+	
+End Function
+
+

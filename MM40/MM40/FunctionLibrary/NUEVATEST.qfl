@@ -1,0 +1,140 @@
+﻿'Funcao de objetos
+Function Btn_Outrareq()
+	Set Btn_Outrareq = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("Button_OutraRequisicaoDeCompra")
+End Function
+
+Function Txt_Outrareq()
+	Set Txt_Outrareq = SAPGuiSession("Session").SAPGuiWindow("Selecionar documento").SAPGuiEdit("Input_OutraRequisicaoDeCompra")
+End Function
+
+Function Btn_OutroDocumento()
+	Set Btn_OutroDocumento = SAPGuiSession("Session").SAPGuiWindow("Selecionar documento").SAPGuiButton("Btn_Outrodocumento")
+End Function
+
+
+'Funcao de SAP
+Function LogonSapGui(usuario,senha)
+	
+	SAPGuiUtil.AutoLogonByIP "10.240.1.5", "400", usuario, senha, "pt", "01"
+	
+	Set element = SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("Input_Buscar")
+	assertElementExist element,"Validar Logon no SAP S4'","Logon bem sucedido","Falha no logon"
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").Maximize
+End Function
+
+Function AcessarTransacaoSapGui(transacao)
+	opcao = UCase(transacao)
+		Select Case opcao
+			Case "ME54N"
+				Set element = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("buttonOutraRequisicaoDeCompra")
+				assertionTitle = "Acesso ao Aplicativo - Criar Ordem Interna"
+			Case "SE16N"
+				Set element = SAPGuiSession("Session").SAPGuiWindow("Exibição geral de tabela").SAPGuiEdit("inputTabela_SE16N")
+				assertionTitle = "Acesso ao Aplicativo - Modificar Ordem Interna"
+			Case Else
+		         assertFalse "Transação não mapeada", "Informe uma transação válida"
+		End Select
+		SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SAPGuiOKCode("Input_Buscar").Set transacao
+		SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access").SendKey ENTER
+
+		assertElementExist element,"Validar acesso à transação " & opcao ,"Acesso bem sucedido","Transação não encontrada"
+End Function
+
+
+
+'Funcao de ME54N
+Function ME54NOutrareq(numeroCotacao)
+	if Btn_Outrareq.Exist Then
+	Btn_Outrareq.Click
+	End If
+	
+	If Txt_Outrareq.Exist Then
+		Txt_Outrareq.Set numeroCotacao
+		Btn_OutroDocumento.Click
+	End If
+End Function
+
+
+'Fechar abas
+Function closeAllTabs()
+	Browser("CreationTime:=0").CloseAllTabs
+End Function
+
+Function CrearReqCompra(tiporeq, TRClascon, TRMaterial, TRtexto, TRQuantsol, TRValor, TRDatarem,TRCentro, TRDeposito, TROrgC, TRGCm)
+	requisicaoDeCompra = CriarRequisicaoDeCompraAmpliadoFiori(tiporeq,TRClascon,"",TRMaterial,TRtexto,TRQuantsol,TRValor,"",TRDatarem,"",TRCentro,TRDeposito,TROrgC,TRGCm)
+	print "Número da requisição de compra: " & requisicaoDeCompra
+	closeAllTabs
+	Parameter("requisicaoDeCompra") = requisicaoDeCompra
+End Function
+
+Function LoginSAP(usuario,senha)
+usuario = DataTable("Usuario", dtGlobalSheet)
+senha = DataTable("Senha", dtGlobalSheet)
+LogonFiori usuario,senha
+End Function
+
+Function AprobarReqCompra(NumReq)
+requisicaoDeCompra = NumReq
+
+AcessarTransacaoSapGui("ME54N")
+
+If SAPGuiSession("Session").SAPGuiWindow("PopUp_Informacao").Exist(5) Then
+	SAPGuiSession("Session").SAPGuiWindow("PopUp_Informacao").SAPGuiButton("ButtonPopUp_Avancar").Click
+End If
+
+SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("buttonOutraRequisicaoDeCompra").Click
+
+SAPGuiSession("Session").SAPGuiWindow("Selecionar documento").SAPGuiEdit("Input_OutraRequisicaoDeCompra").Set requisicaoDeCompra
+SAPGuiSession("Session").SAPGuiWindow("Selecionar documento").SendKey ENTER
+
+'ValidarSinteseDoWorkflowME54NSapGui()
+
+SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiTabStrip("tabStripLiberacao").Select "Estrat.liberação"
+
+SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("Button_ExibirModificar").Click
+SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiGrid("gridViewResponsaveisAprovacao").SelectCell 1,"#5"
+wait 2
+SendKey("{ENTER}")
+wait 5
+
+condition = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiStatusBar("StatusBar_ReqCompraLiberada").Exist(10)
+assertCondition condition, "Validar liberação da requisição de compra","Liberação efetuada com sucesso","Falha na liberação"
+print "Teste status bar: " & SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiStatusBar("StatusBar_ReqCompraLiberada").GetROProperty("text")
+
+SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiButton("Button_Gravar_Liberacao").Click
+
+condition = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiStatusBar("StatusBar_ReqCompraModificada").Exist(10)
+
+assertCondition condition, "Validar modificação da requisição de compra" ,"Modificação efetuada com sucesso","Falha na modificação"
+
+mensagemReqCompraModificada = SAPGuiSession("Session").SAPGuiWindow("Exibir Requisição compra").SAPGuiStatusBar("StatusBar_ReqCompraModificada").GetROProperty("text")
+
+requisicaoDeCompra = extractNumbers(mensagemReqCompraModificada)
+print "Teste status bar: " &  mensagemReqCompraModificada & " | número: " & requisicaoDeCompra
+
+FecharSapGui()
+
+Parameter("requisicaoDeCompraLiberada") = requisicaoDeCompra
+
+End Function
+
+Function IngresarTX(Transaccion)
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access  -  Menu").SAPGuiOKCode("OKCode").Set Transaccion
+	SAPGuiSession("Session").SAPGuiWindow("SAP Easy Access  -  Menu").SAPGuiButton("Continuar").Click
+End Function
+
+Sub AbrirAppURL(nombreProceso, URL)
+
+	nombreProceso = Ucase(nombreProceso)
+	
+	If not (nombreProceso = "CHROME") AND not (nombreProceso = "EXPLORER") Then
+		Call InformeFail("Navegador","Navegador incorrecto o no soportado.")
+		ExitAction
+	End If
+
+	If nombreProceso = "EXPLORER" Then
+		nombreProceso = "IEXPLORE"
+	End If
+	
+	SystemUtil.Run nombreProceso &".EXE", URL, , , 3
+End sub
